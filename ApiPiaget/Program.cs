@@ -1,4 +1,9 @@
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using ApiPiaget.Data;
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddDbContext<ApiPiagetContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("ApiPiagetContext") ?? throw new InvalidOperationException("Connection string 'ApiPiagetContext' not found.")));
 
 // Add services to the container.
 
